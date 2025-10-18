@@ -32,27 +32,37 @@ function subtract(number1, number2, number3) {
     }
 }
 
-function subtract2(number1, number2, number3) {
-     return number1 - number2 - number3;
+function power(number1, number2) {
+    return number1 ** number2;
 }
 
-function power(number1, number2) {
-    if (number1 ** number2 == Infinity) {
-    return "thats so big even i couldnt handle it, but its at least 179000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
+function squareRoot(number) {
+    return Math.sqrt(number);
+}
+
+function linearEquation(number1, number2, number3) {
+    if (isNaN(number1) === true){
+    return number3 - number2;
     } else {
-    return number1 ** number2;
+        return (number3 - number2) / number1;
     }
 }
-
 
 var numberOne;
 var numberTwo;
 var numberThree;
+var partOne;
+var partTwo;
+var partThree;
 
 setInterval(() => {
     numberOne = parseFloat(document.getElementById("number1").value);
     numberTwo = parseFloat(document.getElementById("number2").value);
     numberThree = parseFloat(document.getElementById("number3").value);
+
+    partOne = parseFloat(document.getElementById("part1").value);
+    partTwo = parseFloat(document.getElementById("part2").value);
+    partThree = parseFloat(document.getElementById("part3").value);
 }, 1);
 
 document.getElementById("add").addEventListener("click", function() {
@@ -72,21 +82,55 @@ document.getElementById("divide").addEventListener("click", function() {
 });
 
 document.getElementById("square1").addEventListener("click", function() {
-    document.getElementById("info").innerHTML = multiply(numberOne, numberOne);
+    let result1 = multiply(numberOne, numberOne);
+    if (isNaN(result1) === true) {
+        document.getElementById("info").innerHTML = "there ain't no number one buddy";
+    } else {
+    document.getElementById("info").innerHTML = result1;
+    }
 });
 
 document.getElementById("square2").addEventListener("click", function() {
-    document.getElementById("info").innerHTML = multiply(numberTwo, numberTwo);
+    let result2 = multiply(numberTwo, numberTwo);
+    if (isNaN(result2) === true) {
+        document.getElementById("info").innerHTML = "there ain't no number two buddy";
+    } else {
+    document.getElementById("info").innerHTML = result2;
+    }
 });
 
 document.getElementById("square3").addEventListener("click", function() {
-    let result = multiply(numberThree, numberThree);
-    if (result === NaN) {
+    let result3 = multiply(numberThree, numberThree);
+    if (isNaN(result3) === true) {
         document.getElementById("info").innerHTML = "there ain't no number three buddy";
-    } else
-    document.getElementById("info").innerHTML = result;
+    } else {
+    document.getElementById("info").innerHTML = result3;
+    }
 });
 
 document.getElementById("power").addEventListener("click", function() {
-    document.getElementById("info").innerHTML = power(numberOne, numberTwo);
+    let pResult = power(numberOne, numberTwo);
+    if (isNaN(pResult) === true) {
+        document.getElementById("info").innerHTML = "either number one or number two are missing";
+    } else if (isNaN(pResult) === false && isFinite(pResult) === false) {
+    document.getElementById("info").innerHTML = "the number is so big even i couldnt handle it, but its at least 179000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
+    } else {
+    document.getElementById("info").innerHTML = pResult;
+    }
+});
+
+document.getElementById("sqrt1").addEventListener("click", function() {
+    document.getElementById("info").innerHTML = squareRoot(numberOne);
+});
+
+document.getElementById("sqrt2").addEventListener("click", function() {
+    document.getElementById("info").innerHTML = squareRoot(numberTwo);
+});
+
+document.getElementById("sqrt3").addEventListener("click", function() {
+    document.getElementById("info").innerHTML = squareRoot(numberThree);
+});
+
+document.getElementById("linEquation").addEventListener("click", function() {
+    document.getElementById("equationInfo").innerHTML = linearEquation(partOne, partTwo, partThree);
 });
