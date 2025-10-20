@@ -48,6 +48,31 @@ function linearEquation(number1, number2, number3) {
     }
 }
 
+function quadraticEquation(a, b, c) {
+    if (isNaN(a) == true) {
+        a = 1;
+    }
+    let discriminant = b**2 - 4*a*c;
+    if (discriminant < 0) {
+        return "no possible answers";
+    } else if (discriminant === 0) {
+        let root = -b / (2*a);
+        return `one real answer: ${root}`;
+    } else {
+        let root1 = (-b + Math.sqrt(discriminant)) / (2*a);
+        let root2 = (-b - Math.sqrt(discriminant)) / (2*a);
+        return `two real answers: ${root1} and ${root2}`;
+    }
+}
+
+function round(number, decimals) {
+    if (isNaN(decimals) === true) {
+        decimals = 0;
+    }
+  return Math.round(number * 10**decimals) / 10**decimals;
+}
+
+
 var numberOne;
 var numberTwo;
 var numberThree;
@@ -133,4 +158,12 @@ document.getElementById("sqrt3").addEventListener("click", function() {
 
 document.getElementById("linEquation").addEventListener("click", function() {
     document.getElementById("equationInfo").innerHTML = linearEquation(partOne, partTwo, partThree);
+});
+
+document.getElementById("quadEquation").addEventListener("click", function() {
+    document.getElementById("equationInfo").innerHTML = quadraticEquation(partOne, partTwo, partThree);
+});
+
+document.getElementById("round").addEventListener("click", function() {
+    document.getElementById("info").innerHTML = round(numberOne, numberTwo);
 });
